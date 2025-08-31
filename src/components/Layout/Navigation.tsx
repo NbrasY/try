@@ -27,6 +27,7 @@ const Navigation: React.FC = () => {
     <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-40">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div className="flex justify-between items-center h-16">
+
           <div className="flex items-center space-x-2 sm:space-x-4">
             <div className="flex items-center">
               <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center mr-3">
@@ -38,57 +39,41 @@ const Navigation: React.FC = () => {
             </div>
           </div>
 
-          <div className={`flex items-center space-x-2 sm:space-x-4 lg:space-x-6 ${isRTL ? 'space-x-reverse' : ''}`}>
-            {/* Language Toggle */}
-            <div className="hidden lg:flex items-center bg-white rounded-lg border border-gray-200 p-1 mr-4">
+          <div className={`flex items-center${isRTL ? ' mr-5' : ' ml-5'}`}>
+            <div className="hidden lg:flex items-center bg-white rounded-lg border border-gray-200 p-1">
               <Globe className="w-3 h-3 text-gray-500 mr-1" />
               <button
                 onClick={() => setLanguage('ar')}
-                className={`px-3 py-1 rounded text-sm font-medium transition-all ${
-                  language === 'ar'
-                    ? 'bg-purple-600 text-white'
-                    : 'text-gray-600 hover:text-purple-600'
-                }`}
+                className={`px-3 py-1 rounded text-sm font-medium transition-all ${language === 'ar' ? 'bg-purple-600 text-white' : 'text-gray-600 hover:text-purple-600'}`}
               >
                 العربية
               </button>
               <button
                 onClick={() => setLanguage('en')}
-                className={`px-3 py-1 rounded text-sm font-medium transition-all ${
-                  language === 'en'
-                    ? 'bg-purple-600 text-white'
-                    : 'text-gray-600 hover:text-purple-600'
-                }`}
+                className={`px-3 py-1 rounded text-sm font-medium transition-all ${language === 'en' ? 'bg-purple-600 text-white' : 'text-gray-600 hover:text-purple-600'}`}
               >
                 English
               </button>
             </div>
-            
             {/* Mobile Language Toggle */}
-            <div className="flex lg:hidden items-center bg-gray-100 rounded-lg p-1 mr-2">
+            <div className="flex lg:hidden items-center bg-gray-100 rounded-lg p-1">
               <Globe className="w-3 h-3 text-gray-500 mr-1" />
               <button
                 onClick={() => setLanguage('ar')}
-                className={`px-2 py-1 rounded text-xs font-medium transition-all ${
-                  language === 'ar'
-                    ? 'bg-purple-600 text-white'
-                    : 'text-gray-600 hover:text-purple-600'
-                }`}
+                className={`px-2 py-1 rounded text-xs font-medium transition-all ${language === 'ar' ? 'bg-purple-600 text-white' : 'text-gray-600 hover:text-purple-600'}`}
               >
                 ع
               </button>
               <button
                 onClick={() => setLanguage('en')}
-                className={`px-2 py-1 rounded text-xs font-medium transition-all ${
-                  language === 'en'
-                    ? 'bg-purple-600 text-white'
-                    : 'text-gray-600 hover:text-purple-600'
-                }`}
+                className={`px-2 py-1 rounded text-xs font-medium transition-all ${language === 'en' ? 'bg-purple-600 text-white' : 'text-gray-600 hover:text-purple-600'}`}
               >
                 EN
               </button>
             </div>
+          </div>
 
+          <div className={`flex items-center space-x-2 sm:space-x-4 lg:space-x-6 ${isRTL ? 'space-x-reverse' : ''}`}>
             <button
               onClick={() => handleNavigation('/')}
               className="flex items-center space-x-1 sm:space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
@@ -96,7 +81,6 @@ const Navigation: React.FC = () => {
               <Home className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="text-sm sm:text-base hidden sm:inline">{t('nav.home')}</span>
             </button>
-
             {canAccessControlPanel && (
               <button
                 onClick={() => handleNavigation('/control-panel')}
@@ -106,7 +90,6 @@ const Navigation: React.FC = () => {
                 <span className="text-sm sm:text-base hidden sm:inline">{t('nav.controlPanel')}</span>
               </button>
             )}
-
             {canAccessStatistics && (
               <button
                 onClick={() => handleNavigation('/statistics')}
@@ -116,7 +99,6 @@ const Navigation: React.FC = () => {
                 <span className="text-sm sm:text-base hidden sm:inline">{t('nav.statistics')}</span>
               </button>
             )}
-
             {canAccessActivityLog && (
               <button
                 onClick={() => handleNavigation('/activity-log')}
@@ -126,7 +108,6 @@ const Navigation: React.FC = () => {
                 <span className="text-sm sm:text-base hidden sm:inline">{t('nav.activityLog')}</span>
               </button>
             )}
-
             <div className="flex items-center space-x-2 sm:space-x-4">
               <div className="text-xs sm:text-sm text-gray-600 hidden sm:block">
                 <span className="font-medium">{user.firstName || user.first_name} {user.lastName || user.last_name}</span>
@@ -145,6 +126,6 @@ const Navigation: React.FC = () => {
       </div>
     </nav>
   );
-};
+}
 
 export default Navigation;
