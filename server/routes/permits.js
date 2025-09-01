@@ -515,7 +515,8 @@ router.delete('/:id', requirePermission('canDeletePermits'), async (req, res) =>
         details: `Deleted permit ${existingPermit.permit_number} for ${existingPermit.carrier_name}`,
         ip: req.clientIP || 'unknown',
         user_agent: req.userAgent || 'unknown'
-      });
+      }
+      )
 
     res.json({ message: 'Permit deleted successfully' });
   } catch (error) {

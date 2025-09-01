@@ -242,7 +242,8 @@ router.delete('/:id', requirePermission('canManageUsers'), async (req, res) => {
         details: `Deleted user ${userToDelete.username}`,
         ip: req.clientIP || 'unknown',
         user_agent: req.userAgent || 'unknown'
-      });
+      }
+      )
 
     res.json({ message: 'User deleted successfully' });
   } catch (error) {
