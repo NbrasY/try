@@ -171,7 +171,7 @@
     "username": "اسم المستخدم",
     "action": "الإجراء",
     "detailsLabel": "التفاصيل",
-    "timestamp": "الوقت",
+    "timestamp": "التاريخ والوقت",
     "actions": {
       "login": "دخول المستخدم",
       "logout": "خروج المستخدم",
