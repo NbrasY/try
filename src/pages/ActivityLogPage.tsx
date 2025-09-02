@@ -139,10 +139,10 @@ const ActivityLogPage: React.FC = () => {
                   {t('activityLog.timestamp')}
                 </th>
                 <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('activityLog.name')}
+                  {t('activityLog.nameColumn')}
                 </th>
                 <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('activityLog.username')}
+                  {t('activityLog.usernameColumn')}
                 </th>
                 <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   {t('activityLog.action')}
@@ -166,10 +166,10 @@ const ActivityLogPage: React.FC = () => {
                       {new Date(activity.timestamp).toLocaleDateString('en-GB')} {new Date(activity.timestamp).toLocaleTimeString('en-GB', { hour12: false })}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
-                      {activity.name}
+                      {activity.name || 'N/A'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                      {activity.username}
+                      {activity.username || 'N/A'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${

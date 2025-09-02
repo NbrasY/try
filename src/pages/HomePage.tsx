@@ -221,6 +221,11 @@ const HomePage: React.FC = () => {
   };
 
   const addMaterial = () => {
+    if (newPermit.materials.length >= 50) {
+      alert(t('permits.materialLimitReached'));
+      return;
+    }
+    
     setNewPermit({
       ...newPermit,
       materials: [...newPermit.materials, { id: Date.now().toString(), description: '', serialNumber: '' }]
@@ -672,11 +677,17 @@ const HomePage: React.FC = () => {
                       <button
                         type="button"
                         onClick={addMaterial}
-                        className="flex items-center space-x-2 text-purple-600 hover:text-purple-700 text-sm"
-                        disabled={submitting}
+                        className={`flex items-center space-x-2 text-sm ${
+                          newPermit.materials.length >= 50 
+                            ? 'text-gray-400 cursor-not-allowed' 
+                            : 'text-purple-600 hover:text-purple-700'
+                        }`}
+                        disabled={submitting || newPermit.materials.length >= 50}
                       >
                         <Plus className="w-4 h-4" />
-                        <span>{t('permits.addMaterial')}</span>
+                        <span>
+                          {t('permits.addMaterial')} ({newPermit.materials.length}/50)
+                        </span>
                       </button>
                     )}
                   </div>
