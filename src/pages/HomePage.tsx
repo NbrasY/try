@@ -660,7 +660,8 @@ const HomePage: React.FC = () => {
                       value={newPermit.vehiclePlate}
                       onChange={(value) => setNewPermit({ ...newPermit, vehiclePlate: value })}
                       disabled={submitting || newPermit.requestType === 'material_entrance' || newPermit.requestType === 'material_exit'}
-                      required={newPermit.requestType !== 'material_entrance' && newPermit.requestType !== 'material_exit'}
+                      required={true}
+                      isRequired={newPermit.requestType !== 'material_entrance' && newPermit.requestType !== 'material_exit'}
                     />
                     <p className="text-xs text-gray-500 mt-1">
                       {language === 'ar' ? 'صيغة: أرقام + حروف (مثال: ح ن ط 1234)' : 'Format: digits + letters (e.g., 1234 T N J)'}
