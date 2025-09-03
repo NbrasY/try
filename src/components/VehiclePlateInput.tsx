@@ -218,5 +218,3 @@ const VehiclePlateInput: React.FC<VehiclePlateInputProps> = ({
 };
 
 export default VehiclePlateInput;
-
-              data-digit={index}
