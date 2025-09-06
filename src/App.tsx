@@ -112,11 +112,17 @@ const AppRoutes: React.FC = () => {
 
   // Handle client-side routing
   React.useEffect(() => {
-    // Prevent navigation to unknown routes
-    const validRoutes = ['/', '/control-panel', '/statistics', '/activity-log'];
-    if (user && !validRoutes.includes(location.pathname)) {
-      window.history.replaceState(null, '', '/');
-    }
+    // Handle browser back/forward navigation
+    const handlePopState = () => {
+      // Force re-render when navigating
+      window.location.reload();
+    };
+    
+    window.addEventListener('popstate', handlePopState);
+    
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, [location.pathname, user]);
   if (loading) {
     return <LoadingSpinner />;
