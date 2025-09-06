@@ -18,18 +18,26 @@ const getApiBaseUrl = () => {
   const currentHost = window.location.hostname;
   
   // For Render.com deployment pattern
-if (currentHost.includes('onrender.com')) {
-  // Try to infer backend URL by replacing 'frontend' with 'backend'
-  const inferredBackend = currentHost
-    .replace('frontend', 'backend')
-    .replace('-frontend', '-backend');
-
-  const backendHost = inferredBackend !== currentHost
-    ? inferredBackend
-    : currentHost; // fallback to same if replacement doesn't work
-
-  return `https://${backendHost}/api`;
-}
+  if (currentHost.includes('onrender.com')) {
+    // Try different backend URL patterns for Render.com
+    const possibleBackends = [
+      'project-vepr.onrender.com',
+      'permit-system-backend.onrender.com',
+      currentHost.replace('frontend', 'backend'),
+      currentHost.replace('-frontend', '-backend')
+    ];
+    
+    // Use the first one that looks like a backend URL
+    const backendHost = possibleBackends.find(host => 
+      host.includes('backend') || host.includes('vepr') || host !== currentHost
+    ) || 'project-vepr.onrender.com';
+    
+    return `https://${backendHost}/api`;
+  }
+  
+  // Fallback to same origin with /api path
+  return `${window.location.origin}/api`;
+};
 
 const API_BASE_URL = getApiBaseUrl();
 
